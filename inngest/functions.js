@@ -7,11 +7,19 @@ export const syncUserCreation = inngest.createFunction(
   { event: "clerk/user.created" },
   async ({ event }) => {
     const { data } = event;
+
+    // Cari email utama
+    const primaryEmail =
+      data.email_addresses?.find((e) => e.id === data.primary_email_address_id)
+        ?.email_address ||
+      data.email_addresses?.[0]?.email_address ||
+      "noemail@clerk.dev";
+
     await prisma.user.create({
       data: {
         id: data.id,
-        email: data.email_addresses[0].email_addresses,
-        name: `${data.first_name} ${data.first_name}`,
+        email: primaryEmail, // ✅ gunakan hasil dari atas
+        name: `${data.first_name || ""} ${data.last_name || ""}`.trim(),
         image: data.image_url,
       },
     });
@@ -24,11 +32,18 @@ export const syncUserUpdation = inngest.createFunction(
   { event: "clerk/user.updated" },
   async ({ event }) => {
     const { data } = event;
+
+    const primaryEmail =
+      data.email_addresses?.find((e) => e.id === data.primary_email_address_id)
+        ?.email_address ||
+      data.email_addresses?.[0]?.email_address ||
+      "noemail@clerk.dev";
+
     await prisma.user.update({
       where: { id: data.id },
       data: {
-        email: data.email_addresses[0].email_addresses,
-        name: `${data.first_name} ${data.first_name}`,
+        email: primaryEmail,
+        name: `${data.first_name || ""} ${data.last_name || ""}`.trim(),
         image: data.image_url,
       },
     });
