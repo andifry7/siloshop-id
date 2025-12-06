@@ -1,7 +1,10 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
+import { useUser, UserButton } from "@clerk/nextjs";
 const AdminNavbar = () => {
+  const { user } = useUser();
+
   return (
     <div className="flex items-center justify-between px-12 py-3 border-b border-slate-200 transition-all">
       <Link href="/" className="flex items-center">
@@ -14,7 +17,8 @@ const AdminNavbar = () => {
                  
       </Link>
       <div className="flex items-center gap-3">
-        <p>Hi, Admin</p>
+        <p>Hi, {user?.firstName}</p>
+        <UserButton />
       </div>
     </div>
   );
