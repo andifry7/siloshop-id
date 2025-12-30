@@ -15,7 +15,7 @@ export async function GET(request) {
 
     const storeInfo = await prisma.store.findUnique({ where: { userId } });
 
-    return NextResponse.json({ isSeller: storeInfo });
+    return NextResponse.json({ isSeller: true, storeInfo });
   } catch (error) {
     console.error(error);
     return NextResponse.json(

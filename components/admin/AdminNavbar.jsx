@@ -6,7 +6,7 @@ const AdminNavbar = () => {
   const { user } = useUser();
 
   return (
-    <div className="flex items-center justify-between px-12 py-3 border-b border-slate-200 transition-all">
+    <div className="flex items-center justify-between px-12 py-3 rounded-[10px] shadow-[0px_5px_10px_0px_rgba(0,0,0,0.25)] transition-all">
       <Link href="/" className="flex items-center">
         <Image
           src="/siloshop-logo-admin.png"

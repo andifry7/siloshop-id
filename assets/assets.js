@@ -20,6 +20,7 @@ import { ClockFadingIcon, HeadsetIcon, SendIcon } from "lucide-react";
 import profile_pic1 from "./profile_pic1.jpg";
 import profile_pic2 from "./profile_pic2.jpg";
 import profile_pic3 from "./profile_pic3.jpg";
+import { Pizza, Candy, Coffee, Apple, Cookie } from "lucide-react";
 
 export const assets = {
   upload_area,
@@ -42,12 +43,31 @@ export const assets = {
 };
 
 export const categories = [
-  "Headphone",
-  "Speakers",
-  "Watch",
-  "Earbuds",
-  "Mouse",
-  "Decoration",
+  {
+    title: "Makanan Berat",
+    slug: "makanan-berat",
+    icon: <Pizza size={64} className="text-red-500" />,
+  },
+  {
+    title: "Minuman",
+    slug: "minuman",
+    icon: <Coffee size={64} className="text-red-500" />,
+  },
+  {
+    title: "Cemilan",
+    slug: "cemilan",
+    icon: <Cookie size={64} className="text-red-500" />,
+  },
+  {
+    title: "Manisan",
+    slug: "manisan",
+    icon: <Candy size={64} className="text-red-500" />,
+  },
+  {
+    title: "Makanan Sehat",
+    slug: "makanan-sehat",
+    icon: <Apple size={64} className="text-red-500" />,
+  },
 ];
 
 export const dummyRatingsData = [
@@ -170,9 +190,8 @@ export const dummyStoreData = {
 export const productDummyData = [
   {
     id: "prod_1",
-    name: "Modern table lamp",
-    description:
-      "Modern table lamp with a sleek design. It's perfect for any room. It's made of high-quality materials and comes with a lifetime warranty. Enhance your audio experience with this earbuds. Indulge yourself in a world of pure sound with 50 hours of uninterrupted playtime. Equipped with the cutting-edge Zen Mode Tech ENC and BoomX Tech, prepare to be enthralled by a symphony of crystal-clear melodies.",
+    name: "Loram ipsum",
+    description: "Loram ipsum",
     mrp: 40,
     price: 29,
     images: [product_img1, product_img2, product_img3, product_img4],
@@ -186,7 +205,7 @@ export const productDummyData = [
   },
   {
     id: "prod_2",
-    name: "Smart speaker gray",
+    name: "Lorem ipsum",
     description:
       "Smart speaker with a sleek design. It's perfect for any room. It's made of high-quality materials and comes with a lifetime warranty.",
     mrp: 50,
@@ -364,24 +383,25 @@ export const productDummyData = [
 
 export const ourSpecsData = [
   {
-    title: "Free Shipping",
+    title: "Pengiriman Gratis",
     description:
-      "Enjoy fast, free delivery on every order no conditions, just reliable doorstep.",
+      "Nikmati pengiriman cepat dan gratis untuk setiap pesanan tanpa syarat.",
     icon: SendIcon,
-    accent: "#FF3B3B",
+    accent: "#F44B4B",
   },
   {
-    title: "7 Days easy Return",
-    description: "Change your mind? No worries. Return any item within 7 days.",
-    icon: ClockFadingIcon,
-    accent: "#FF8904",
-  },
-  {
-    title: "24/7 Customer Support",
+    title: "Makanan Fresh",
     description:
-      "We're here for you. Get expert help with our customer support.",
+      "Makanan fresh yang menggugah selera, dibuat dari bahan segar pilihan dengan cita rasa unik yang wajib dicoba!",
+    icon: ClockFadingIcon,
+    accent: "#FF8D3C",
+  },
+  {
+    title: "Khusus KM UISI",
+    description:
+      "Penawaran spesial untuk keluarga Mahasiswa UISI — lebih hemat, lebih mudah, hanya untuk Anda!",
     icon: HeadsetIcon,
-    accent: "#05DF72",
+    accent: "#FFCA38",
   },
 ];
 

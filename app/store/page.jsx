@@ -1,6 +1,8 @@
 "use client";
-import { dummyStoreDashboardData } from "@/assets/assets";
+
 import Loading from "@/components/Loading";
+import { useAuth } from "@clerk/nextjs";
+import axios from "axios";
 import {
   CircleDollarSignIcon,
   ShoppingBasketIcon,
@@ -10,9 +12,12 @@ import {
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 export default function Dashboard() {
-  const currency = process.env.NEXT_PUBLIC_CURRENCY_SYMBOL || "$";
+  const { getToken } = useAuth();
+
+  const currency = process.env.NEXT_PUBLIC_CURRENCY_SYMBOL || "Rp";
 
   const router = useRouter();
 
@@ -21,30 +26,40 @@ export default function Dashboard() {
     totalProducts: 0,
     totalEarnings: 0,
     totalOrders: 0,
-    ratings: [],
+    rating: [],
   });
 
   const dashboardCardsData = [
     {
-      title: "Total Products",
+      title: "Total Produk",
       value: dashboardData.totalProducts,
       icon: ShoppingBasketIcon,
     },
     {
-      title: "Total Earnings",
+      title: "Total Pendapatan",
       value: currency + dashboardData.totalEarnings,
       icon: CircleDollarSignIcon,
     },
     { title: "Total Orders", value: dashboardData.totalOrders, icon: TagsIcon },
     {
       title: "Total Ratings",
-      value: dashboardData.ratings.length,
+      value: dashboardData.rating.length,
       icon: StarIcon,
     },
   ];
 
   const fetchDashboardData = async () => {
-    setDashboardData(dummyStoreDashboardData);
+    try {
+      const token = await getToken();
+      const { data } = await axios.get("/api/store/dashboard", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setDashboardData(data.dashboardData);
+    } catch (error) {
+      toast.error(error?.response?.data?.error || error.message);
+    }
     setLoading(false);
   };
 
@@ -83,7 +98,7 @@ export default function Dashboard() {
       <h2>Total Reviews</h2>
 
       <div className="mt-5">
-        {dashboardData.ratings.map((review, index) => (
+        {dashboardData.rating.map((review, index) => (
           <div
             key={index}
             className="flex max-sm:flex-col gap-5 sm:items-center justify-between py-6 border-b border-slate-200 text-sm text-slate-600 max-w-4xl"
@@ -121,7 +136,7 @@ export default function Dashboard() {
                         size={17}
                         className="text-transparent mt-0.5"
                         fill={
-                          review.rating >= index + 1 ? "#00C950" : "#D1D5DB"
+                          review.rating >= index + 1 ? "#FFCC00" : "#D1D5DB"
                         }
                       />
                     ))}
@@ -129,7 +144,7 @@ export default function Dashboard() {
               </div>
               <button
                 onClick={() => router.push(`/product/${review.product.id}`)}
-                className="bg-slate-100 px-5 py-2 hover:bg-slate-200 rounded transition-all"
+                className="bg-red-500 text-white px-5 py-2 hover:bg-red-700 rounded transition-all"
               >
                 View Product
               </button>

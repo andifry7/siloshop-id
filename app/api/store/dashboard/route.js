@@ -19,13 +19,13 @@ export async function GET(request) {
       where: { storeId },
     });
 
-    const ratings = await prisma.rating.findMany({
+    const rating = await prisma.rating.findMany({
       where: { productId: { in: products.map((product) => product.id) } },
       include: { user: true, product: true },
     });
 
     const dashboardData = {
-      ratings,
+      rating,
       totalOrders: orders.length,
       totalEarnings: Math.round(
         orders.reduce((acc, order) => acc + order.total, 0)

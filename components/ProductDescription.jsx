@@ -44,6 +44,7 @@ const ProductDescription = ({ product }) => {
                 height={100}
               />
               <div>
+                <p className="font-medium text-slate-800">{item.user.name}</p>
                 <div className="flex items-center">
                   {Array(5)
                     .fill("")
@@ -52,12 +53,11 @@ const ProductDescription = ({ product }) => {
                         key={index}
                         size={18}
                         className="text-transparent mt-0.5"
-                        fill={item.rating >= index + 1 ? "#FF3B3B" : "#D1D5DB"}
+                        fill={item.rating >= index + 1 ? "#FFCC00" : "#D1D5DB"}
                       />
                     ))}
                 </div>
                 <p className="text-sm max-w-lg my-4">{item.review}</p>
-                <p className="font-medium text-slate-800">{item.user.name}</p>
                 <p className="mt-3 font-light">
                   {new Date(item.createdAt).toDateString()}
                 </p>
@@ -77,15 +77,13 @@ const ProductDescription = ({ product }) => {
           height={100}
         />
         <div>
-          <p className="font-medium text-slate-600">
-            Product by {product.store.name}
-          </p>
+          <p className="font-medium text-slate-600">{product.store.name}</p>
           <Link
             href={`/shop/${product.store.username}`}
             className="flex items-center gap-1.5 text-red-500"
           >
             {" "}
-            view store <ArrowRight size={14} />
+            lihat toko <ArrowRight size={14} />
           </Link>
         </div>
       </div>

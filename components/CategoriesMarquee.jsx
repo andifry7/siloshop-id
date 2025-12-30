@@ -1,20 +1,150 @@
+"use client";
+
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { categories } from "@/assets/assets";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
-const CategoriesMarquee = () => {
+export default function CategoriesFiveCenter() {
+  const [items, setItems] = useState(categories.slice(0, 5));
+  const router = useRouter();
 
-    return (
-        <div className="overflow-hidden w-full relative max-w-7xl mx-auto select-none group sm:my-20">
-            <div className="absolute left-0 top-0 h-full w-20 z-10 pointer-events-none bg-gradient-to-r from-white to-transparent" />
-            <div className="flex min-w-[200%] animate-[marqueeScroll_10s_linear_infinite] sm:animate-[marqueeScroll_40s_linear_infinite] group-hover:[animation-play-state:paused] gap-4" >
-                {[...categories, ...categories, ...categories, ...categories].map((company, index) => (
-                    <button key={index} className="px-5 py-2 bg-slate-100 rounded-lg text-slate-500 text-xs sm:text-sm hover:bg-slate-600 hover:text-white active:scale-95 transition-all duration-300">
-                        {company}
-                    </button>
-                ))}
+  const moveRight = () => {
+    setItems((prev) => {
+      const last = prev[prev.length - 1];
+      const rest = prev.slice(0, prev.length - 1);
+      return [last, ...rest];
+    });
+  };
+
+  const moveLeft = () => {
+    setItems((prev) => {
+      const first = prev[0];
+      const rest = prev.slice(1);
+      return [...rest, first];
+    });
+  };
+
+  const centerItem = items[2];
+
+  return (
+    <>
+      {/* ================= DESKTOP ================= */}
+      <div className="relative w-full py-10 select-none hidden md:flex flex-col items-center gap-6">
+        {/* TITLE */}
+        <h2 className="text-3xl font-bold text-slate-800">Kategori Produk</h2>
+
+        <div className="relative w-full flex justify-center">
+          {/* LEFT ARROW */}
+          <button
+            onClick={moveLeft}
+            className="absolute inset-y-0 my-auto
+      left-[calc(50%-595px-40px)]
+      z-30 bg-red-500 text-white
+      w-14 h-14 flex items-center justify-center
+      rounded-full shadow-lg
+      hover:scale-110 transition"
+          >
+            <ChevronLeft size={40} />
+          </button>
+
+          {/* CONTAINER */}
+          <div className="relative w-[1190px] h-72 bg-gradient-to-br from-red-500 via-red-500 to-red-400 rounded-[50px] overflow-hidden">
+            <div className="absolute left-[65px] top-[40px] inline-flex items-center gap-11">
+              {items.map((item, index) => {
+                const isCenter = index === 2;
+
+                return (
+                  <div
+                    key={index}
+                    onClick={() => router.push(`/kategori/${item.slug}`)}
+                    className={`
+                cursor-pointer
+                flex flex-col items-center justify-center text-center
+                rounded-2xl shadow-[0px_5px_10px_rgba(0,0,0,0.25)]
+                transition-all duration-300
+                hover:scale-105 active:scale-95
+                ${
+                  isCenter
+                    ? "bg-white w-48 h-52 scale-110 text-red-600 font-semibold"
+                    : "bg-white/70 w-44 h-44 text-red-500 opacity-90"
+                }
+              `}
+                  >
+                    <div
+                      className={`${
+                        isCenter ? "w-24 h-24" : "w-20 h-20"
+                      } mb-3 flex items-center justify-center`}
+                    >
+                      {item.icon}
+                    </div>
+                    <div
+                      className={`${
+                        isCenter ? "text-2xl" : "text-xl"
+                      } font-semibold`}
+                    >
+                      {item.title}
+                    </div>
+                  </div>
+                );
+              })}
             </div>
-            <div className="absolute right-0 top-0 h-full w-20 md:w-40 z-10 pointer-events-none bg-gradient-to-l from-white to-transparent" />
-        </div>
-    );
-};
+          </div>
 
-export default CategoriesMarquee;
+          {/* RIGHT ARROW */}
+          <button
+            onClick={moveRight}
+            className="absolute inset-y-0 my-auto
+      right-[calc(50%-595px-40px)]
+      z-30 bg-red-500 text-white
+      w-14 h-14 flex items-center justify-center
+      rounded-full shadow-lg
+      hover:scale-110 transition"
+          >
+            <ChevronRight size={40} />
+          </button>
+        </div>
+      </div>
+
+      {/* ================= MOBILE ================= */}
+      <div className="md:hidden flex flex-col items-center gap-4 py-8">
+        {/* TITLE */}
+        <h2 className="text-xl font-bold text-slate-800">Kategori Produk</h2>
+
+        <div className="relative w-[90%] h-56 bg-gradient-to-br from-red-500 via-red-500 to-red-400 rounded-[32px] flex items-center justify-center">
+          {/* LEFT */}
+          <button
+            onClick={moveLeft}
+            className="absolute inset-y-0 my-auto left-3
+      bg-white text-red-500 w-10 h-10 rounded-full shadow"
+          >
+            <ChevronLeft size={40} />
+          </button>
+
+          {/* CENTER ITEM */}
+          <div
+            onClick={() => router.push(`/kategori/${centerItem.slug}`)}
+            className="cursor-pointer bg-white w-44 h-48 rounded-2xl
+      shadow-lg flex flex-col items-center justify-center
+      text-center text-red-600 font-semibold
+      active:scale-95 transition"
+          >
+            <div className="w-20 h-20 mb-3 flex items-center justify-center">
+              {centerItem.icon}
+            </div>
+            <div className="text-xl">{centerItem.title}</div>
+          </div>
+
+          {/* RIGHT */}
+          <button
+            onClick={moveRight}
+            className="absolute inset-y-0 my-auto right-3
+      bg-white text-red-500 w-10 h-10 rounded-full shadow"
+          >
+            <ChevronRight size={40} />
+          </button>
+        </div>
+      </div>
+    </>
+  );
+}

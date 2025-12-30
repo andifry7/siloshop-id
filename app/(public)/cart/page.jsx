@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function Cart() {
-  const currency = process.env.NEXT_PUBLIC_CURRENCY_SYMBOL || "$";
+  const currency = process.env.NEXT_PUBLIC_CURRENCY_SYMBOL || "Rp";
 
   const { cartItems } = useSelector((state) => state.cart);
   const products = useSelector((state) => state.product.list);
@@ -59,10 +59,10 @@ export default function Cart() {
           <table className="w-full max-w-4xl text-slate-600 table-auto">
             <thead>
               <tr className="max-sm:text-sm">
-                <th className="text-left">Product</th>
-                <th>Quantity</th>
-                <th>Total Price</th>
-                <th className="max-md:hidden">Remove</th>
+                <th className="text-left">Produk</th>
+                <th>Jumlah</th>
+                <th>Total Harga</th>
+                <th className="max-md:hidden">Hapus</th>
               </tr>
             </thead>
             <tbody>

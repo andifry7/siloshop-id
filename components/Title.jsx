@@ -14,7 +14,7 @@ const Title = ({ title, description, visibleButton = true, href = "" }) => {
         <p className="max-w-lg text-center">{description}</p>
         {visibleButton && (
           <button className="text-red-500 flex items-center gap-1">
-            View more <ArrowRight size={14} />
+            Lihat lebih lanjut <ArrowRight size={14} />
           </button>
         )}
       </Link>

@@ -1,5 +1,5 @@
 "use client";
-import { dummyAdminDashboardData } from "@/assets/assets";
+
 import Loading from "@/components/Loading";
 import OrdersAreaChart from "@/components/OrdersAreaChart";
 import { useAuth } from "@clerk/nextjs";
@@ -29,17 +29,17 @@ export default function AdminDashboard() {
 
   const dashboardCardsData = [
     {
-      title: "Total Products",
+      title: "Total Produk",
       value: dashboardData.products,
       icon: ShoppingBasketIcon,
     },
     {
-      title: "Total Revenue",
+      title: "Total Pendapatan",
       value: currency + dashboardData.revenue,
       icon: CircleDollarSignIcon,
     },
-    { title: "Total Orders", value: dashboardData.orders, icon: TagsIcon },
-    { title: "Total Stores", value: dashboardData.stores, icon: StoreIcon },
+    { title: "Total Order", value: dashboardData.orders, icon: TagsIcon },
+    { title: "Total Toko", value: dashboardData.stores, icon: StoreIcon },
   ];
 
   const fetchDashboardData = async () => {

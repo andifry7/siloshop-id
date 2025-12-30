@@ -41,20 +41,30 @@ const ProductDetails = ({ product }) => {
             <div
               key={index}
               onClick={() => setMainImage(product.images[index])}
-              className="bg-slate-100 flex items-center justify-center size-26 rounded-lg group cursor-pointer"
+              className="bg-gradient-to-br from-red-500 via-red-500 to-red-400 flex items-center justify-center size-26 rounded-lg cursor-pointer"
             >
-              <Image
-                src={image}
-                className="group-hover:scale-103 group-active:scale-95 transition"
-                alt=""
-                width={45}
-                height={45}
-              />
+              <div className="bg-slate-200 rounded-md">
+                <Image
+                  src={image}
+                  alt=""
+                  width={64}
+                  height={64}
+                  className="rounded-md transition group-hover:scale-103 group-active:scale-95"
+                />
+              </div>
             </div>
           ))}
         </div>
-        <div className="flex justify-center items-center h-100 sm:size-113 bg-slate-100 rounded-lg ">
-          <Image src={mainImage} alt="" width={250} height={250} />
+        <div className="w-96 h-96 bg-gradient-to-br from-red-500 via-red-500 to-red-400 rounded-[10px] shadow-[0px_5px_10px_0px_rgba(0,0,0,0.10)] flex justify-center items-center">
+          <div className="bg-slate-200 rounded-[10px]">
+            <Image
+              src={mainImage}
+              alt=""
+              width={264}
+              height={264}
+              className="rounded-[10px]"
+            />
+          </div>
         </div>
       </div>
       <div className="flex-1">
@@ -69,7 +79,7 @@ const ProductDetails = ({ product }) => {
                 key={index}
                 size={14}
                 className="text-transparent mt-0.5"
-                fill={averageRating >= index + 1 ? "#FF3B3B" : "#D1D5DB"}
+                fill={averageRating >= index + 1 ? "#FFCC00" : "#D1D5DB"}
               />
             ))}
           <p className="text-sm ml-3 text-slate-500">
@@ -98,7 +108,7 @@ const ProductDetails = ({ product }) => {
         <div className="flex items-end gap-5 mt-10">
           {cart[productId] && (
             <div className="flex flex-col gap-3">
-              <p className="text-lg text-slate-800 font-semibold">Quantity</p>
+              <p className="text-lg text-slate-800 font-semibold">Jumlah</p>
               <Counter productId={productId} />
             </div>
           )}
@@ -106,24 +116,24 @@ const ProductDetails = ({ product }) => {
             onClick={() =>
               !cart[productId] ? addToCartHandler() : router.push("/cart")
             }
-            className="bg-slate-800 text-white px-10 py-3 text-sm font-medium rounded hover:bg-slate-900 active:scale-95 transition"
+            className="bg-red-500 text-white px-10 py-3 text-sm font-medium rounded hover:bg-red-700 active:scale-95 transition"
           >
-            {!cart[productId] ? "Add to Cart" : "View Cart"}
+            {!cart[productId] ? "Tambah ke Keranjang" : "Lihat Keranjang"}
           </button>
         </div>
         <hr className="border-gray-300 my-5" />
         <div className="flex flex-col gap-4 text-slate-500">
           <p className="flex gap-3">
             {" "}
-            <EarthIcon className="text-slate-400" /> Free shipping worldwide{" "}
+            <EarthIcon className="text-slate-400" /> Gratis Ongkir{" "}
           </p>
           <p className="flex gap-3">
             {" "}
-            <CreditCardIcon className="text-slate-400" /> 100% Secured Payment{" "}
+            <CreditCardIcon className="text-slate-400" /> 100% Pembayaran Aman{" "}
           </p>
           <p className="flex gap-3">
             {" "}
-            <UserIcon className="text-slate-400" /> Trusted by top brands{" "}
+            <UserIcon className="text-slate-400" /> Terbukti Terpercaya{" "}
           </p>
         </div>
       </div>

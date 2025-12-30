@@ -8,7 +8,7 @@ const Rating = ({ value = 4 }) => {
         <Star
           key={i}
           className={`shrink-0 size-4 fill-current ${
-            value > i ? "text-red-400" : "text-gray-300"
+            value > i ? "text-yellow-400" : "text-gray-300"
           }`}
         />
       ))}
