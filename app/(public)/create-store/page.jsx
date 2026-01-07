@@ -136,8 +136,9 @@ export default function CreateStore() {
                 <span className="text-slate-800 font-medium">Store</span>
               </h1>
               <p className="max-w-lg">
-                To become a seller on SILOSHOP.ID, submit your store details for
-                review. Your store will be activated after admin verification.
+                Untuk menjadi seller di SILOSHOP.ID, kirimkan detail toko Anda
+                untuk ditinjau. Toko Anda akan diaktifkan setelah verifikasi
+                admin.
               </p>
             </div>
 
@@ -170,7 +171,7 @@ export default function CreateStore() {
               onChange={onChangeHandler}
               value={storeInfo.username}
               type="text"
-              placeholder="Enter your store username"
+              placeholder="Masukkan username toko Anda"
               className="border border-slate-300 outline-slate-400 w-full max-w-lg p-2 rounded"
             />
 
@@ -180,7 +181,7 @@ export default function CreateStore() {
               onChange={onChangeHandler}
               value={storeInfo.name}
               type="text"
-              placeholder="Enter your store name"
+              placeholder="Masukkan nama toko Anda"
               className="border border-slate-300 outline-slate-400 w-full max-w-lg p-2 rounded"
             />
 
@@ -190,7 +191,7 @@ export default function CreateStore() {
               onChange={onChangeHandler}
               value={storeInfo.description}
               rows={5}
-              placeholder="Enter your store description"
+              placeholder="Masukkan deskripsi toko Anda"
               className="border border-slate-300 outline-slate-400 w-full max-w-lg p-2 rounded resize-none"
             />
 
@@ -200,7 +201,7 @@ export default function CreateStore() {
               onChange={onChangeHandler}
               value={storeInfo.email}
               type="email"
-              placeholder="Enter your store email"
+              placeholder="Masukkan email toko Anda"
               className="border border-slate-300 outline-slate-400 w-full max-w-lg p-2 rounded"
             />
 
@@ -210,7 +211,7 @@ export default function CreateStore() {
               onChange={onChangeHandler}
               value={storeInfo.contact}
               type="text"
-              placeholder="Enter your store contact number"
+              placeholder="Masukkan nomor kontak toko Anda"
               className="border border-slate-300 outline-slate-400 w-full max-w-lg p-2 rounded"
             />
 
@@ -220,11 +221,11 @@ export default function CreateStore() {
               onChange={onChangeHandler}
               value={storeInfo.address}
               rows={5}
-              placeholder="Enter your store address"
+              placeholder="Masukkan alamat toko Anda"
               className="border border-slate-300 outline-slate-400 w-full max-w-lg p-2 rounded resize-none"
             />
 
-            <button className="bg-slate-800 text-white px-12 py-2 rounded mt-10 mb-40 active:scale-95 hover:bg-slate-900 transition ">
+            <button className="bg-red-500 text-white px-12 py-2 rounded mt-10 mb-40 active:scale-95 hover:bg-red-700 transition ">
               Submit
             </button>
           </form>

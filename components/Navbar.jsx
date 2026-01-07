@@ -7,10 +7,19 @@ import { useSelector } from "react-redux";
 import { useUser, useClerk, UserButton, Protect } from "@clerk/nextjs";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
+import axios from "axios";
+import { useEffect } from "react";
+import { useAuth } from "@clerk/nextjs";
+import { LayoutDashboardIcon } from "lucide-react";
+import { StoreIcon } from "lucide-react";
 
 const Navbar = () => {
   const { user } = useUser();
   const { openSignIn } = useClerk();
+  const { getToken, isLoaded } = useAuth();
+
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [isSeller, setIsSeller] = useState(false);
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
@@ -22,6 +31,42 @@ const Navbar = () => {
     e.preventDefault();
     router.push(`/shop?search=${search}`);
   };
+  useEffect(() => {
+    if (!isLoaded || !user) {
+      setIsAdmin(false);
+      setIsSeller(false);
+      return;
+    }
+
+    const checkRoles = async () => {
+      const token = await getToken();
+      if (!token) return;
+
+      try {
+        const [adminRes, sellerRes] = await Promise.allSettled([
+          axios.get("/api/admin/is-admin", {
+            headers: { Authorization: `Bearer ${token}` },
+          }),
+          axios.get("/api/store/is-seller", {
+            headers: { Authorization: `Bearer ${token}` },
+          }),
+        ]);
+
+        setIsAdmin(
+          adminRes.status === "fulfilled" && adminRes.value.data.isAdmin
+        );
+
+        setIsSeller(
+          sellerRes.status === "fulfilled" && sellerRes.value.data.isSeller
+        );
+      } catch {
+        setIsAdmin(false);
+        setIsSeller(false);
+      }
+    };
+
+    checkRoles();
+  }, [isLoaded, user?.id, getToken]);
 
   return (
     <nav className="relative bg-white rounded-[10px] shadow-[0px_5px_10px_0px_rgba(0,0,0,0.25)]">
@@ -107,6 +152,22 @@ const Navbar = () => {
                     label="My Orders"
                     onClick={() => router.push("/orders")}
                   />
+
+                  {isAdmin && (
+                    <UserButton.Action
+                      labelIcon={<LayoutDashboardIcon size={16} />}
+                      label="Admin Dashboard"
+                      onClick={() => router.push("/admin")}
+                    />
+                  )}
+
+                  {isSeller && (
+                    <UserButton.Action
+                      labelIcon={<StoreIcon size={16} />}
+                      label="My Store"
+                      onClick={() => router.push("/store")}
+                    />
+                  )}
                 </UserButton.MenuItems>
               </UserButton>
             )}
@@ -137,6 +198,22 @@ const Navbar = () => {
                         label="My Orders"
                         onClick={() => router.push("/orders")}
                       />
+
+                      {isAdmin && (
+                        <UserButton.Action
+                          labelIcon={<LayoutDashboardIcon size={16} />}
+                          label="Admin Dashboard"
+                          onClick={() => router.push("/admin")}
+                        />
+                      )}
+
+                      {isSeller && (
+                        <UserButton.Action
+                          labelIcon={<StoreIcon size={16} />}
+                          label="My Store"
+                          onClick={() => router.push("/store")}
+                        />
+                      )}
                     </UserButton.MenuItems>
                   </UserButton>
                 ) : (
@@ -211,19 +288,45 @@ const Navbar = () => {
         <div className="px-6 py-6 space-y-6 text-slate-700 text-base">
           {/* USER INFO */}
           {user ? (
-            <div className="flex items-center gap-3 border-b pb-4">
+            <div className="flex items-start gap-3 border-b pb-4">
               <UserButton />
-              <div>
-                <p className="font-medium">{user.firstName}</p>
+
+              <div className="flex flex-col gap-1">
+                <p className="font-medium leading-tight">{user.firstName}</p>
+
                 <button
                   onClick={() => {
                     router.push("/orders");
                     setOpen(false);
                   }}
-                  className="text-sm text-slate-500"
+                  className="text-sm text-slate-500 hover:text-slate-700 transition text-left"
                 >
                   My Orders
                 </button>
+
+                {isAdmin && (
+                  <button
+                    onClick={() => {
+                      router.push("/admin");
+                      setOpen(false);
+                    }}
+                    className="text-sm text-red-500 hover:text-red-600 font-semibold transition text-left"
+                  >
+                    Admin Dashboard
+                  </button>
+                )}
+
+                {isSeller && (
+                  <button
+                    onClick={() => {
+                      router.push("/store");
+                      setOpen(false);
+                    }}
+                    className="text-sm text-emerald-600 hover:text-emerald-700 font-semibold transition text-left"
+                  >
+                    My Store
+                  </button>
+                )}
               </div>
             </div>
           ) : (

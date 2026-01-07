@@ -18,7 +18,7 @@ const Newsletter = () => {
     <div className="flex flex-col items-center mx-4 my-36">
       <Title
         title="Mau Belanja? Login Dulu Yuk!"
-        description="Login untuk menikmati semua fitur dan penawaran eksklusif dari SHILOSHOP.ID"
+        description="Login untuk menikmati semua fitur dan penawaran eksklusif dari SILOSHOP.ID"
         visibleButton={false}
       />
 
