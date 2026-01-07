@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 const Footer = () => {
+  const currentYear = new Date().getFullYear();
   const MailIcon = () => (
     <svg
       width="16"
@@ -173,12 +174,23 @@ const Footer = () => {
     {
       title: "KONTAK",
       links: [
-        { text: "+6281390985657", path: "/", icon: MailIcon },
-        { text: "alfin.grs07@gmail.com", path: "/", icon: PhoneIcon },
+        {
+          text: "andifry.github7@gmail.com",
+          path: "mailto:andifry.github7@gmail.com",
+          icon: MailIcon,
+          external: true,
+        },
+        {
+          text: "+6281390985657",
+          path: "https://wa.me/6281390985657",
+          icon: PhoneIcon,
+          external: true,
+        },
         {
           text: "Kompleks PT. Semen Indonesia (Persero) Tbk. Jl. Veteran, Gresik Jawa Timur, 61122.",
           path: "https://maps.app.goo.gl/bPy4SK2cJpvZEAHBA",
           icon: MapPinIcon,
+          external: true,
         },
       ],
     },
@@ -232,13 +244,25 @@ const Footer = () => {
                   {section.links.map((link, i) => (
                     <li key={i} className="flex items-center gap-2">
                       {link.icon && <link.icon />}
-                      <Link
-                        href={link.path}
-                        className="relative group inline-block"
-                      >
-                        <span>{link.text}</span>
-                        <span className="absolute left-0 -bottom-0.5 h-[2px] w-0 bg-red-500 transition-all duration-300 group-hover:w-full" />
-                      </Link>
+                      {link.external ? (
+                        <a
+                          href={link.path}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="relative group inline-block"
+                        >
+                          <span>{link.text}</span>
+                          <span className="absolute left-0 -bottom-0.5 h-[2px] w-0 bg-red-500 transition-all duration-300 group-hover:w-full" />
+                        </a>
+                      ) : (
+                        <Link
+                          href={link.path}
+                          className="relative group inline-block"
+                        >
+                          <span>{link.text}</span>
+                          <span className="absolute left-0 -bottom-0.5 h-[2px] w-0 bg-red-500 transition-all duration-300 group-hover:w-full" />
+                        </Link>
+                      )}
                     </li>
                   ))}
                 </ul>
@@ -247,7 +271,7 @@ const Footer = () => {
           </div>
         </div>
         <p className="py-4 text-sm text-slate-500">
-          Copyright 2025 © SILOSHOP.ID All Right Reserved.
+          Copyright {currentYear} © SILOSHOP.ID All Rights Reserved.
         </p>
       </div>
     </footer>

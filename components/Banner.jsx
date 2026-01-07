@@ -1,11 +1,19 @@
 "use client";
 import React from "react";
 import toast from "react-hot-toast";
+import { useUser } from "@clerk/nextjs";
 
 export default function Banner() {
+  const { isSignedIn } = useUser();
+
   const [isOpen, setIsOpen] = React.useState(true);
 
   const handleClaim = () => {
+    if (!isSignedIn) {
+      toast.error("Silakan login terlebih dahulu");
+      return;
+    }
+
     setIsOpen(false);
     toast.success("Coupon copied to clipboard!");
     navigator.clipboard.writeText("NEW20");

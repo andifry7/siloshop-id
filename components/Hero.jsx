@@ -16,16 +16,18 @@ const Hero = () => {
       <div className="flex max-xl:flex-col gap-8 max-w-7xl mx-auto my-10">
         <div className="relative flex-1 flex flex-col bg-gradient-to-br from-red-500 via-red-500 to-red-400 rounded-3xl shadow-[0px_5px_10px_0px_rgba(0,0,0,0.25)] xl:min-h-100 group">
           <div className="p-5 sm:p-16">
-            <div className="inline-flex items-center gap-3 bg-red-200 text-red-600 pr-4 p-1 rounded-full text-xs sm:text-sm">
-              <span className="bg-red-600 px-3 py-1 max-sm:ml-1 rounded-full text-white text-xs">
-                NEWS
-              </span>{" "}
-              Kini SHILOSHOP.ID hadir untuk memenuhi kebutuhan perut anda.{" "}
-              <ChevronRightIcon
-                className="group-hover:ml-2 transition-all"
-                size={16}
-              />
-            </div>
+            <Link href="/shop">
+              <div className="group inline-flex cursor-pointer items-center gap-3 bg-red-200 text-red-600 pr-4 p-1 rounded-full text-xs sm:text-sm hover:bg-red-300 transition">
+                <span className="bg-red-600 px-3 py-1 max-sm:ml-1 rounded-full text-white text-xs">
+                  NEWS
+                </span>
+                Kini SHILOSHOP.ID hadir untuk memenuhi kebutuhan perut anda.
+                <ChevronRightIcon
+                  size={16}
+                  className="cursor-pointer group-hover:ml-1 transition-all group-hover:text-red-800"
+                />
+              </div>
+            </Link>
             <h2 className="text-2xl sm:text-4xl leading-[1.2] my-3 font-medium text-white bg-clip-text text-transparent max-w-xs  sm:max-w-md">
               Makanan yang Anda sukai. Harga yang terpercaya.
             </h2>

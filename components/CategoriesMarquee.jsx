@@ -32,7 +32,9 @@ export default function CategoriesFiveCenter() {
       {/* ================= DESKTOP ================= */}
       <div className="relative w-full py-10 select-none hidden md:flex flex-col items-center gap-6">
         {/* TITLE */}
-        <h2 className="text-3xl font-bold text-slate-800">Kategori Produk</h2>
+        <h2 className="text-2xl font-semibold text-slate-800">
+          Kategori Produk
+        </h2>
 
         <div className="relative w-full flex justify-center">
           {/* LEFT ARROW */}
@@ -57,19 +59,21 @@ export default function CategoriesFiveCenter() {
                 return (
                   <div
                     key={index}
-                    onClick={() => router.push(`/kategori/${item.slug}`)}
+                    onClick={
+                      isCenter
+                        ? () => router.push(`/kategori/${item.slug}`)
+                        : undefined
+                    }
                     className={`
-                cursor-pointer
-                flex flex-col items-center justify-center text-center
-                rounded-2xl shadow-[0px_5px_10px_rgba(0,0,0,0.25)]
-                transition-all duration-300
-                hover:scale-105 active:scale-95
-                ${
-                  isCenter
-                    ? "bg-white w-48 h-52 scale-110 text-red-600 font-semibold"
-                    : "bg-white/70 w-44 h-44 text-red-500 opacity-90"
-                }
-              `}
+        flex flex-col items-center justify-center text-center
+        rounded-2xl shadow-[0px_5px_10px_rgba(0,0,0,0.25)]
+        transition-all duration-300
+        ${
+          isCenter
+            ? "cursor-pointer hover:scale-105 active:scale-95 bg-white w-48 h-52 scale-110 text-red-600 font-semibold"
+            : "pointer-events-none bg-white/70 w-44 h-44 text-red-500 opacity-70"
+        }
+      `}
                   >
                     <div
                       className={`${
@@ -78,6 +82,7 @@ export default function CategoriesFiveCenter() {
                     >
                       {item.icon}
                     </div>
+
                     <div
                       className={`${
                         isCenter ? "text-2xl" : "text-xl"
@@ -109,7 +114,9 @@ export default function CategoriesFiveCenter() {
       {/* ================= MOBILE ================= */}
       <div className="md:hidden flex flex-col items-center gap-4 py-8">
         {/* TITLE */}
-        <h2 className="text-xl font-bold text-slate-800">Kategori Produk</h2>
+        <h2 className="text-2xl font-semibold text-slate-800">
+          Kategori Produk
+        </h2>
 
         <div className="relative w-[90%] h-56 bg-gradient-to-br from-red-500 via-red-500 to-red-400 rounded-[32px] flex items-center justify-center">
           {/* LEFT */}

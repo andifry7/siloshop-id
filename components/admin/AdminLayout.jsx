@@ -56,7 +56,7 @@ const AdminLayout = ({ children }) => {
       </h1>
       <Link
         href="/"
-        className="bg-slate-700 text-white flex items-center gap-2 mt-8 p-2 px-6 max-sm:text-sm rounded-full"
+        className="bg-red-500 hover:bg-red-700 text-white flex items-center gap-2 mt-8 p-2 px-6 max-sm:text-sm rounded-full"
       >
         Go to home <ArrowRightIcon size={18} />
       </Link>

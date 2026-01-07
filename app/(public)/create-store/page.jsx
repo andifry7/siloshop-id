@@ -75,7 +75,7 @@ export default function CreateStore() {
   const onSubmitHandler = async (e) => {
     e.preventDefault();
     if (!user) {
-      return toast("Please Login to continue");
+      return toast("Silakan Login untuk melanjutkan");
     }
     try {
       const token = await getToken();
@@ -110,8 +110,8 @@ export default function CreateStore() {
     return (
       <div className="min-h-[80vh] flex flex-col items-center justify-center">
         <h1 className="sm:text-2xl lg:text-3xl mx-5 font-semibold text-slate-500 text-center max-w-2xl">
-          Please <span className="text-slate-500"> login </span> to access this
-          page.
+          Silakan <span className="text-slate-600"> login </span>
+          untuk mengakses halaman ini
         </h1>
       </div>
     );

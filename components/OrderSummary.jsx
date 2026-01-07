@@ -11,6 +11,7 @@ import { fetchCart } from "@/lib/features/cart/cartSlice";
 const OrderSummary = ({ totalPrice, items }) => {
   const { user } = useUser();
   const { getToken } = useAuth();
+  const { isSignedIn } = useUser();
   const dispatch = useDispatch();
   const currency = process.env.NEXT_PUBLIC_CURRENCY_SYMBOL || "Rp";
 
@@ -147,7 +148,13 @@ const OrderSummary = ({ totalPrice, items }) => {
             )}
             <button
               className="flex items-center gap-1 text-slate-600 mt-1"
-              onClick={() => setShowAddressModal(true)}
+              onClick={() => {
+                if (!isSignedIn) {
+                  toast.error("Silakan login terlebih dahulu");
+                  return;
+                }
+                setShowAddressModal(true);
+              }}
             >
               Tambah Alamat <PlusIcon size={18} />
             </button>
