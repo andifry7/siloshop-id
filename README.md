@@ -1,8 +1,6 @@
 <p align="center">
-  <img src="./public/siloshop-logo.png" width="100" alt="SILOSHOP.ID Logo">
+<h1><img src="./public/siloshop-logo.png" width="100" alt="SILOSHOP.ID Logo">SILOSHOP.ID</h1>
 </p>
-
-<h1 align="center">SILOSHOP.ID</h1>
 
 <p align="center">
   An open-source multi-vendor e-commerce platform built with Next.js and Tailwind CSS, designed for scalability and modern user experience.
