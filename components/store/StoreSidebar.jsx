@@ -14,9 +14,9 @@ const StoreSidebar = ({ storeInfo }) => {
 
   const sidebarLinks = [
     { name: "Dashboard", href: "/store", icon: HomeIcon },
-    { name: "Add Product", href: "/store/add-product", icon: SquarePlusIcon },
+    { name: "Tambah Produk", href: "/store/add-product", icon: SquarePlusIcon },
     {
-      name: "Manage Product",
+      name: "Kelola Produk",
       href: "/store/manage-product",
       icon: SquarePenIcon,
     },

@@ -143,7 +143,7 @@ export default function CreateStore() {
             </div>
 
             <label className="mt-10 cursor-pointer">
-              Store Logo
+              Logo Toko
               <Image
                 src={
                   storeInfo.image
@@ -175,7 +175,7 @@ export default function CreateStore() {
               className="border border-slate-300 outline-slate-400 w-full max-w-lg p-2 rounded"
             />
 
-            <p>Name</p>
+            <p>Nama</p>
             <input
               name="name"
               onChange={onChangeHandler}
@@ -185,7 +185,7 @@ export default function CreateStore() {
               className="border border-slate-300 outline-slate-400 w-full max-w-lg p-2 rounded"
             />
 
-            <p>Description</p>
+            <p>Deskripsi</p>
             <textarea
               name="description"
               onChange={onChangeHandler}
@@ -205,7 +205,7 @@ export default function CreateStore() {
               className="border border-slate-300 outline-slate-400 w-full max-w-lg p-2 rounded"
             />
 
-            <p>Contact Number</p>
+            <p>Nomor Kontak</p>
             <input
               name="contact"
               onChange={onChangeHandler}
@@ -215,7 +215,7 @@ export default function CreateStore() {
               className="border border-slate-300 outline-slate-400 w-full max-w-lg p-2 rounded"
             />
 
-            <p>Address</p>
+            <p>Alamat</p>
             <textarea
               name="address"
               onChange={onChangeHandler}

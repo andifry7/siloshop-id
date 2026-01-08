@@ -146,7 +146,7 @@ export default function Dashboard() {
                 onClick={() => router.push(`/product/${review.product.id}`)}
                 className="bg-red-500 text-white px-5 py-2 hover:bg-red-700 rounded transition-all"
               >
-                View Product
+                Lihat Produk
               </button>
             </div>
           </div>

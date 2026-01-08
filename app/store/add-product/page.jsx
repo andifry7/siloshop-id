@@ -88,7 +88,7 @@ export default function StoreAddProduct() {
       <h1 className="text-2xl">
         Add New <span className="text-slate-800 font-medium">Products</span>
       </h1>
-      <p className="mt-7">Product Images</p>
+      <p className="mt-7">Gambar Produk</p>
 
       <div htmlFor="" className="flex gap-3 mt-4">
         {Object.keys(images).map((key) => (
@@ -118,25 +118,25 @@ export default function StoreAddProduct() {
       </div>
 
       <label htmlFor="" className="flex flex-col gap-2 my-6 ">
-        Name
+        Nama
         <input
           type="text"
           name="name"
           onChange={onChangeHandler}
           value={productInfo.name}
-          placeholder="Enter product name"
+          placeholder="Masukkan nama produk"
           className="w-full max-w-sm p-2 px-4 outline-none border border-slate-200 rounded"
           required
         />
       </label>
 
       <label htmlFor="" className="flex flex-col gap-2 my-6 ">
-        Description
+        Deskripsi
         <textarea
           name="description"
           onChange={onChangeHandler}
           value={productInfo.description}
-          placeholder="Enter product description"
+          placeholder="Masukkan deskripsi produk"
           rows={5}
           className="w-full max-w-sm p-2 px-4 outline-none border border-slate-200 rounded resize-none"
           required
@@ -145,7 +145,7 @@ export default function StoreAddProduct() {
 
       <div className="flex gap-5">
         <label htmlFor="" className="flex flex-col gap-2 ">
-          Actual Price (Rp)
+          Harga Sebenarnya (Rp)
           <input
             type="number"
             name="mrp"
@@ -158,7 +158,7 @@ export default function StoreAddProduct() {
           />
         </label>
         <label htmlFor="" className="flex flex-col gap-2 ">
-          Offer Price (Rp)
+          Harga Penawaran (Rp)
           <input
             type="number"
             name="price"
@@ -180,7 +180,7 @@ export default function StoreAddProduct() {
         className="w-full max-w-sm p-2 px-4 my-6 outline-none border border-slate-200 rounded"
         required
       >
-        <option value="">Select a category</option>
+        <option value="">Pilih kategori</option>
         {categories.map((category) => (
           <option key={category} value={category}>
             {category}
@@ -194,7 +194,7 @@ export default function StoreAddProduct() {
         disabled={loading}
         className="bg-red-500 text-white px-6 mt-7 py-2 hover:bg-red-700 rounded transition"
       >
-        Add Product
+        Tambah Produk
       </button>
     </form>
   );

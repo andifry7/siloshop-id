@@ -102,7 +102,7 @@ export default function AdminCoupons() {
         <div className="flex gap-2 max-sm:flex-col mt-2">
           <input
             type="text"
-            placeholder="Coupon Code"
+            placeholder="Kode Kupon"
             className="w-full mt-2 p-2 border border-slate-200 outline-slate-400 rounded-md"
             name="code"
             value={newCoupon.code}
@@ -111,7 +111,7 @@ export default function AdminCoupons() {
           />
           <input
             type="number"
-            placeholder="Coupon Discount (%)"
+            placeholder="Diskon Kupon (%)"
             min={1}
             max={100}
             className="w-full mt-2 p-2 border border-slate-200 outline-slate-400 rounded-md"
@@ -123,7 +123,7 @@ export default function AdminCoupons() {
         </div>
         <input
           type="text"
-          placeholder="Coupon Description"
+          placeholder="Deskripsi Kupon"
           className="w-full mt-2 p-2 border border-slate-200 outline-slate-400 rounded-md"
           name="description"
           value={newCoupon.description}
@@ -132,7 +132,7 @@ export default function AdminCoupons() {
         />
 
         <label>
-          <p className="mt-3">Coupon Expiry Date</p>
+          <p className="mt-3">Tanggal Kedaluwarsa Kupon</p>
           <input
             type="date"
             placeholder="Coupon Expires At"
@@ -158,7 +158,7 @@ export default function AdminCoupons() {
               <div className="w-11 h-6 bg-slate-300 rounded-full peer peer-checked:bg-red-500 transition-colors duration-200"></div>
               <span className="dot absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform duration-200 ease-in-out peer-checked:translate-x-5"></span>
             </label>
-            <p>For New User</p>
+            <p>Untuk User Baru</p>
           </div>
           <div className="flex gap-2 mt-3">
             <label className="relative inline-flex items-center cursor-pointer text-gray-900 gap-3">
@@ -174,11 +174,11 @@ export default function AdminCoupons() {
               <div className="w-11 h-6 bg-slate-300 rounded-full peer peer-checked:bg-red-500 transition-colors duration-200"></div>
               <span className="dot absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform duration-200 ease-in-out peer-checked:translate-x-5"></span>
             </label>
-            <p>For Member</p>
+            <p>Untuk Member</p>
           </div>
         </div>
         <button className="mt-4 p-2 px-10 rounded bg-red-500 hover:bg-red-700 text-white active:scale-95 transition">
-          Add Coupon
+          Tambah Kupon
         </button>
       </form>
 
@@ -192,22 +192,22 @@ export default function AdminCoupons() {
             <thead className="bg-slate-50">
               <tr>
                 <th className="py-3 px-4 text-left font-semibold text-slate-600">
-                  Code
+                  Kode
                 </th>
                 <th className="py-3 px-4 text-left font-semibold text-slate-600">
-                  Description
+                  Deskripsi
                 </th>
                 <th className="py-3 px-4 text-left font-semibold text-slate-600">
-                  Discount
+                  Diskon
                 </th>
                 <th className="py-3 px-4 text-left font-semibold text-slate-600">
-                  Expires At
+                  Kedaluwarsa Pada
                 </th>
                 <th className="py-3 px-4 text-left font-semibold text-slate-600">
-                  New User
+                  User Baru
                 </th>
                 <th className="py-3 px-4 text-left font-semibold text-slate-600">
-                  For Member
+                  Untuk Member
                 </th>
                 <th className="py-3 px-4 text-left font-semibold text-slate-600">
                   Action
